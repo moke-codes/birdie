@@ -1,0 +1,11 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "POC of server for Twitter-like client",
+  "main": "start.js",
+  "scripts": {
+    "start": "nodemon ./start.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
