@@ -6,17 +6,6 @@ var twitter = new TwitterAPI({
     callback: process.env.TWITTER_CALLBACK_ADDRESS
 });
 
-function redirectIfNotLoggedIn(req, res) {
-    if (!req.session.requestToken ||
-        !req.session.requestTokenSecret) {
-        console.log("Redirecting...");
-        res.redirect('./login');      
-        return true;     
-    }
-
-    return false;
-}
-
 exports.login = (req, res, next) => {
     twitter.getRequestToken(function(error, requestToken, requestTokenSecret, results){
         if (error) {
@@ -27,14 +16,12 @@ exports.login = (req, res, next) => {
             req.session.requestToken = requestToken;
             req.session.requestTokenSecret = requestTokenSecret;
 
-            res.redirect(twitter.getAuthUrl(requestToken));
+            res.redirect(`https://api.twitter.com/oauth/authorize?oauth_token=${requestToken}`);
         }
     });
 }
 
 exports.tweets = (req, res, next) => {
-
-    if (redirectIfNotLoggedIn(req, res)) return;
 
     console.log(req.session.requestToken, req.session.requestTokenSecret);
     console.log(req.query["oauth_verifier"]);
