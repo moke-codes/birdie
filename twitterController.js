@@ -3,10 +3,10 @@ var TwitterAPI = require('node-twitter-api');
 var twitter = new TwitterAPI({
     consumerKey: process.env.CONSUMER_KEY,
     consumerSecret: process.env.CONSUMER_SECRET,
-    callback: 'http://127.0.0.1:3000/tweets'
+    callback: process.env.TWITTER_CALLBACK_ADDRESS
 });
 
-function redirectIfNoLoggedIn(req, res) {
+function redirectIfNotLoggedIn(req, res) {
     if (!req.session.requestToken ||
         !req.session.requestTokenSecret) {
         console.log("Redirecting...");
@@ -27,14 +27,14 @@ exports.login = (req, res, next) => {
             req.session.requestToken = requestToken;
             req.session.requestTokenSecret = requestTokenSecret;
 
-            res.redirect(`https://twitter.com/oauth/authenticate?oauth_token=${requestToken}`);
+            res.redirect(twitter.getAuthUrl(requestToken));
         }
     });
 }
 
 exports.tweets = (req, res, next) => {
 
-    if (redirectIfNoLoggedIn(req, res)) return;
+    if (redirectIfNotLoggedIn(req, res)) return;
 
     console.log(req.session.requestToken, req.session.requestTokenSecret);
     console.log(req.query["oauth_verifier"]);
