@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    #app
+        p Birdie - test
+        button(v-on:click="loadLists") Test
+    
+    script.
+        var app = new Vue({
+            el:'#app',
+            methods: {
+               loadLists: () => alert('Lists loaded!') 
+            }
+        });
