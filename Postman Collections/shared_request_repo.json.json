@@ -41,7 +41,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "POST Users gorest.co.in",
 			"id": "1ed0f8bc-701f-4bef-8cdf-0945284ff11f",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
