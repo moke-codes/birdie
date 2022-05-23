@@ -7,7 +7,7 @@
 	"item": [
 		{
 			"name": "Test Request",
-			"_postman_id": "ab463ffb-6d43-4e49-a516-677a791a578c",
+			"id": "ab463ffb-6d43-4e49-a516-677a791a578c",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -15,6 +15,19 @@
 				"method": "GET",
 				"header": [],
 				"url": "https://httpbin.org/get"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Users gorest.co.in",
+			"id": "36612215-3b65-4850-8590-0604337f53f5",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://gorest.co.in/public/v2/users"
 			},
 			"response": []
 		}
